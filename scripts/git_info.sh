@@ -6,6 +6,6 @@ source "$CURRENT_DIR/helpers.sh"
 
 main() {
         cd $(tmux display -p -F "#{pane_current_path}")
-        print_git_ahead
+        echo -n "$(print_git_branch) $(print_git_ahead) $(print_git_status)" | tr -s ' '
 }
 main
