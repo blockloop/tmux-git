@@ -13,6 +13,7 @@ print_git_ahead() {
 }
 
 main() {
+        cd $(tmux display -p -F "#{pane_current_path}")
         print_git_ahead
 }
 main
