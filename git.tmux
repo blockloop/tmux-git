@@ -6,9 +6,13 @@ source "$CURRENT_DIR/scripts/helpers.sh"
 
 git_interpolation=(
 	"\#{git_branch}"
+	"\#{git_ahead}"
+	"\#{git_status}"
 )
 git_commands=(
 	"#($CURRENT_DIR/scripts/git_branch.sh)"
+	"#($CURRENT_DIR/scripts/git_ahead.sh)"
+	"#($CURRENT_DIR/scripts/git_status.sh)"
 )
 
 set_tmux_option() {
