@@ -23,14 +23,14 @@ is_chrome() {
 }
 
 print_git_status() {
-        if st=$(git status -s --porcelain 2>/dev/null | awk '{print $1}' | cut -c1 | sort | uniq | xargs); then
+        if st=$(git --no-optional-locks status -s --porcelain 2>/dev/null | awk '{print $1}' | cut -c1 | sort | uniq | xargs); then
                 echo -n "$st"
         fi
 }
 
 
 print_git_ahead() {
-        if branch=$(git rev-parse --abbrev-ref HEAD | xargs); then
+        if branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD | xargs); then
                 git for-each-ref --format="%(push:track)" refs/heads/$branch | \
                         grep -P '(ahead|behind)' | \
                         sed 's|ahead |↥|g; s|behind |↧|g'
@@ -38,7 +38,7 @@ print_git_ahead() {
 }
 
 print_git_branch() {
-        if branch=$(git rev-parse --abbrev-ref HEAD | xargs); then
+        if branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD | xargs); then
                 echo -n "$branch"
         fi
 }
